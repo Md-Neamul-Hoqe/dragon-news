@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 function App() {
   return (
-    <section className="max-w-6xl mx-auto font-poppins">
+    <section className="font-poppins">
       <Outlet />
     </section>
   );
