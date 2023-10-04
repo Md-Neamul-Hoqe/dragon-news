@@ -4,42 +4,46 @@ import LeftSideNav from "../Shared/LeftSideNav/LeftSideNav";
 import Navbar from "../Shared/Navbar/Navbar";
 import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
-import DetailsNews from "./DetailsNews";
+import NewsCard from "./NewsCard";
 
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState("1");
-  const [detailsNews, setDetailsNews] = useState([]);
+  const [news, setNews] = useState([]);
   // const [newsOfTheCategory, setNewsOfTheCategory] = useState([]);
 
   useEffect(() => {
     fetch("news.json")
       .then((res) => res.json())
-      .then((data) => setDetailsNews(data));
+      .then((data) => setNews(data));
   }, []);
 
   const handleActiveCategory = (id) => {
     setActiveCategory(id);
 
-    setDetailsNews(
-      detailsNews.filter((news) => news.category_id === activeCategory)
-    );
+    // setNews(
+    //   news.filter((news) => news.category_id === activeCategory)
+    // );
   };
-
+console.log(news);
   return (
     <div>
       <Header />
       <BreakingNews />
       <Navbar />
       <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+
+        {/* left side nav */}
         <aside>
           <LeftSideNav
             activeCategory={activeCategory}
             handleActiveCategory={handleActiveCategory}
           />
         </aside>
+        
+        {/* News Container */}
         <aside className="col-span-2">
-          {detailsNews.map((news) => (
-            <DetailsNews news={news} key={news._id} />
+          {news.map((aNews) => (
+            <NewsCard news={aNews} key={aNews._id} />
           ))}
         </aside>
         <aside>

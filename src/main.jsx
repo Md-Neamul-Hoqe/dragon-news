@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import AuthProviders from "./Providers/AuthProviders.jsx";
+import DetailsNews from "./pages/Home/DetailsNews.jsx";
 
 const routers = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const routers = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/news/:id",
+        element: <DetailsNews />,
       },
     ],
   },

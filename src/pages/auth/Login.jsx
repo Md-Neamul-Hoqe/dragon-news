@@ -37,6 +37,7 @@ const Login = () => {
 
             <hr className="my-5 text-light" />
 
+            {/* Email */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-semibold">Email Address</span>
@@ -50,6 +51,7 @@ const Login = () => {
               />
             </div>
 
+            {/* password */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-semibold">Password</span>
@@ -63,14 +65,14 @@ const Login = () => {
               />
             </div>
 
+            {/* submit button */}
             <div className="form-control">
-              {/* <Link> */}
               <button type="submit" className="btn btn-neutral w-full">
                 Login
               </button>
-              {/* </Link> */}
             </div>
 
+            {/* go to register page */}
             <div className="text-center py-7">
               <span>Don&apos;t have an account?</span>
               <Link to="/register" className="link link-hover text-red ps-2">
@@ -79,7 +81,6 @@ const Login = () => {
             </div>
           </form>
         </div>
-        {/* </div> */}
       </div>
     </section>
   );
