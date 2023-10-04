@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import news1Img from "../../../assets/1.png";
 import news3Img from "../../../assets/3.png";
 import { FaRegCalendar } from "react-icons/fa";
 import moment from "moment";
-import PropTypes from "prop-types";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
-const LeftSideNav = ({ activeCategory, handleActiveCategory }) => {
+const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
+
+  const { categoryId, setCategoryId } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("categories.json")
@@ -17,19 +19,23 @@ const LeftSideNav = ({ activeCategory, handleActiveCategory }) => {
 
   return (
     <>
+    {/* Categories */}
       <div id="categories">
         <h2 className="text-xl font-semibold leading-8 mb-5">All Categories</h2>
         {categories.map((category) => (
-          <NavLink
-            to={activeCategory == category.id ? "/" : `${category.id}`}
-            onClick={() => handleActiveCategory(category.id)}
-            className="block text-xl text-light-gray font-medium py-4 pl-12 hover:bg-ash hover:text-dark hover:font-semibold"
+          <Link
+            onClick={() => setCategoryId(`${category.id}`)}
+            className={`block text-xl text-light-gray font-medium py-4 pl-12 hover:bg-ash hover:text-dark hover:font-semibold ${
+              categoryId == category.id && "active"
+            }`}
             key={category.id}>
             {category.name}
-          </NavLink>
+          </Link>
         ))}
       </div>
-      <div id="sideNews" className="space-y-10">
+
+      {/* News */}
+      <div id="sideNews" className="space-y-10 my-10">
         <div>
           <img src={news1Img} alt="" />
           <h4 className="text-dark font-semibold text-xl my-2">
@@ -57,11 +63,6 @@ const LeftSideNav = ({ activeCategory, handleActiveCategory }) => {
       </div>
     </>
   );
-};
-
-LeftSideNav.propTypes = {
-  handleActiveCategory: PropTypes.func.isRequired,
-  activeCategory: PropTypes.string.isRequired,
 };
 
 export default LeftSideNav;

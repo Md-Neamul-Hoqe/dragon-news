@@ -1,32 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../Shared/Header/Header";
 import LeftSideNav from "../Shared/LeftSideNav/LeftSideNav";
 import Navbar from "../Shared/Navbar/Navbar";
 import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
 import NewsCard from "./NewsCard";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Home = () => {
-  const [activeCategory, setActiveCategory] = useState("1");
   const [news, setNews] = useState([]);
-  // const [newsOfTheCategory, setNewsOfTheCategory] = useState([]);
+
+  const { categoryId } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("news.json")
       .then((res) => res.json())
       .then((data) => {
         const theNews = data.filter(
-          (news) => news.category_id == activeCategory
+          (news) => isNaN(categoryId) || news.category_id == categoryId
         );
 
-        console.log(theNews);
+        // console.log(theNews, categoryId);
         setNews(theNews);
       });
-  }, [activeCategory]);
+  }, [categoryId]);
 
-  const handleActiveCategory = (id) => {
-    setActiveCategory(id);
-  };
   return (
     <>
       <Header />
@@ -35,10 +33,7 @@ const Home = () => {
       <main className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {/* left side nav */}
         <aside>
-          <LeftSideNav
-            activeCategory={activeCategory}
-            handleActiveCategory={handleActiveCategory}
-          />
+          <LeftSideNav />
         </aside>
 
         {/* News Container */}

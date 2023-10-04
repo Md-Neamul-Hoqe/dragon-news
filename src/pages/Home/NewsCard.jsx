@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Ratings from "../../Components/Ratings/Ratings";
 
 const NewsCard = ({ news }) => {
-
   const [bookmark, setBookmark] = useState(false);
 
   const {
@@ -18,7 +17,7 @@ const NewsCard = ({ news }) => {
     total_view,
     rating,
   } = news;
-  
+
   const [ratings, setRatings] = useState(rating.number);
 
   const handleRatings = (rate) => {
@@ -66,8 +65,12 @@ const NewsCard = ({ news }) => {
           </p>
           <div className="card-actions flex justify-between py-5 px-3 border-t border-light-gray mt-5">
             <div className="flex items-center gap-2">
-              <Ratings name={`rating-${_id}`} rating={ratings} handleRatings={handleRatings} />
-              <span className="text-xl leading-8">{rating.number}</span>
+              <Ratings
+                name={`rating-${_id}`}
+                rating={ratings}
+                handleRatings={handleRatings}
+              />
+              <span className="text-xl leading-8">{ratings}</span>
             </div>
             <div className="flex items-center gap-2">
               <FaEye /> <span>{total_view}</span>

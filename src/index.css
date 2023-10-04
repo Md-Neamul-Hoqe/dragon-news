@@ -9,11 +9,11 @@
 }
 
 #categories .active {
-    background: lightgray !important;
-    color: black !important;
-    font-weight: 600 !important;
+    @apply bg-light;
+    @apply text-dark;
+    @apply font-semibold;
 }
 
 .btn {
-    text-transform: capitalize;
+    @apply capitalize;
 }
