@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 const Ratings = ({ name, rating, handleRatings }) => {
   return (
     <div className="rating rating-md rating-half" defaultChecked={rating}>
+      
       <input type="radio" name={name} className="rating-hidden" />
       <input
         type="radio"

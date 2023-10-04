@@ -13,17 +13,27 @@ import addBg from "../../../assets/bg1.png";
 // import addBgOpacity from "../../../assets/bg.png";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const RightSideNav = () => {
+  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGithub } = useContext(AuthContext);
+
   return (
     <aside>
       <div className="p-4 mb-8">
         <h2 className="text-3xl mb-5">Login With</h2>
-        <button className="btn btn-accent btn-outline mb-3 w-full">
+        <button
+          onClick={signInWithGoogle}
+          className="btn btn-accent btn-outline mb-3 w-full">
           <FaGoogle />
           Login With Google
         </button>
-        <button className="btn btn-neutral btn-outline mb-3 w-full">
+        <p className="text-red bg-light-red">{}</p>
+        <button
+          onClick={signInWithGithub}
+          className="btn btn-neutral btn-outline mb-3 w-full">
           <FaGithub />
           Login With Github
         </button>

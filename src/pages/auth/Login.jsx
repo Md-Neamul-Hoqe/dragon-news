@@ -4,7 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, createUser, error, setError } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,18 +13,17 @@ const Login = () => {
 
     const Form = new FormData(e.currentTarget);
     const email = Form.get("email");
-    const photo = Form.get("photo");
+    // const photo = Form.get("photo");
     const password = Form.get("password");
 
     console.log(email, password);
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        createUser(result.user);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setError(error));
   };
 
-  // console.log(user);
   return (
     <section className="bg-base-200">
       <Navbar />
@@ -79,6 +78,11 @@ const Login = () => {
                 Register
               </Link>
             </div>
+            {error && (
+              <div>
+                <p>{error}</p>
+              </div>
+            )}
           </form>
         </div>
       </div>
