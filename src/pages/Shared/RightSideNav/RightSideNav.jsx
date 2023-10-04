@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const RightSideNav = () => {
   return (
-    <div>
+    <aside>
       <div className="p-4 mb-8">
         <h2 className="text-3xl mb-5">Login With</h2>
         <button className="btn btn-accent btn-outline mb-3 w-full">
@@ -32,33 +32,33 @@ const RightSideNav = () => {
         <h2 className="text-3xl mb-5">Find Us On</h2>
         <Link
           to="/"
-          className="p-4 flex text-lg items-center rounded-t-lg border-2 border-gray">
+          className="p-4 flex text-lg items-center rounded-t-lg border-2 border-light">
           <FaFacebook />
           <span className="ms-3">Facebook</span>
         </Link>
         <Link
           to="/"
-          className="p-4 flex text-lg items-center rounded-none border-x-2 border-gray">
+          className="p-4 flex text-lg items-center rounded-none border-x-2 border-light">
           <FaTwitter />
           <span className="ms-3">Twitter</span>
         </Link>
         <Link
           to="/"
-          className="p-4 flex text-lg items-center rounded-b-lg border-2 border-gray">
+          className="p-4 flex text-lg items-center rounded-b-lg border-2 border-light">
           <FaInstagram />
           <span className="ms-3">Instagram</span>
         </Link>
       </div>
       <div className="p-4 mb-8 bg-light">
         <h2 className="text-3xl mb-5">Q-Zone</h2>
-        <img src={qZone1} alt="" />
-        <img src={qZone2} alt="" />
-        <img src={qZone3} alt="" />
+        <img className="w-full" src={qZone1} alt="" />
+        <img className="w-full" src={qZone2} alt="" />
+        <img className="w-full" src={qZone3} alt="" />
       </div>
       <div>
-        <img className="rounded-none" src={addBg} alt="" />
+        <img className="rounded-none w-full" src={addBg} alt="" />
       </div>
-    </div>
+    </aside>
   );
 };
 

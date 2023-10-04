@@ -14,24 +14,25 @@ const Home = () => {
   useEffect(() => {
     fetch("news.json")
       .then((res) => res.json())
-      .then((data) => setNews(data));
-  }, []);
+      .then((data) => {
+        const theNews = data.filter(
+          (news) => news.category_id == activeCategory
+        );
+
+        console.log(theNews);
+        setNews(theNews);
+      });
+  }, [activeCategory]);
 
   const handleActiveCategory = (id) => {
     setActiveCategory(id);
-
-    // setNews(
-    //   news.filter((news) => news.category_id === activeCategory)
-    // );
   };
-console.log(news);
   return (
-    <div>
+    <>
       <Header />
       <BreakingNews />
       <Navbar />
-      <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-
+      <main className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {/* left side nav */}
         <aside>
           <LeftSideNav
@@ -39,18 +40,21 @@ console.log(news);
             handleActiveCategory={handleActiveCategory}
           />
         </aside>
-        
+
         {/* News Container */}
         <aside className="col-span-2">
+          <h2 className="text-xl font-semibold ">Dragon News Home</h2>
           {news.map((aNews) => (
             <NewsCard news={aNews} key={aNews._id} />
           ))}
         </aside>
+
+        {/* Right side nev */}
         <aside>
           <RightSideNav />
         </aside>
-      </section>
-    </div>
+      </main>
+    </>
   );
 };
 

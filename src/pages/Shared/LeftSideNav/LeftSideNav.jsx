@@ -21,9 +21,7 @@ const LeftSideNav = ({ activeCategory, handleActiveCategory }) => {
         <h2 className="text-xl font-semibold leading-8 mb-5">All Categories</h2>
         {categories.map((category) => (
           <NavLink
-            to={
-              activeCategory == category.id ? "/" : `/category/${category.id}`
-            }
+            to={activeCategory == category.id ? "/" : `${category.id}`}
             onClick={() => handleActiveCategory(category.id)}
             className="block text-xl text-light-gray font-medium py-4 pl-12 hover:bg-ash hover:text-dark hover:font-semibold"
             key={category.id}>

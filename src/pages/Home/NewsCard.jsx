@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { FaBookmark, FaEye, FaRegBookmark, FaShareAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Ratings from "../../Components/Ratings/Ratings";
 
 const NewsCard = ({ news }) => {
-    console.log(news);
 
   const [bookmark, setBookmark] = useState(false);
 
@@ -18,8 +18,12 @@ const NewsCard = ({ news }) => {
     total_view,
     rating,
   } = news;
+  
+  const [ratings, setRatings] = useState(rating.number);
 
-  const [ratins, setRatings] = useState(rating);
+  const handleRatings = (rate) => {
+    setRatings(rate);
+  };
   return (
     <>
       <div className="card card-compact bg-base-100 space-y-5 my-3 border border-light-gray rounded-lg">
@@ -62,64 +66,7 @@ const NewsCard = ({ news }) => {
           </p>
           <div className="card-actions flex justify-between py-5 px-3 border-t border-light-gray mt-5">
             <div className="flex items-center gap-2">
-              {/* <div className="rating rating-md rating-half">
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="rating-hidden"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-1"
-                  checked
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${_id}`}
-                  className="bg-orange mask mask-star-2 mask-half-2"
-                />
-              </div> */}
+              <Ratings name={`rating-${_id}`} rating={ratings} handleRatings={handleRatings} />
               <span className="text-xl leading-8">{rating.number}</span>
             </div>
             <div className="flex items-center gap-2">
