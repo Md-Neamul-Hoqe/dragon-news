@@ -17,7 +17,7 @@ const LeftSideNav = ({ activeCategory, handleActiveCategory }) => {
 
   return (
     <>
-      <div id="categories" className="sticky top-0">
+      <div id="categories">
         <h2 className="text-xl font-semibold leading-8 mb-5">All Categories</h2>
         {categories.map((category) => (
           <NavLink
