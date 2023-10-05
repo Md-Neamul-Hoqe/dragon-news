@@ -6,19 +6,16 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
-import qZone1 from "../../../assets/qZone1.png";
 import qZone2 from "../../../assets/qZone2.png";
 import qZone3 from "../../../assets/qZone3.png";
 import addBg from "../../../assets/bg1.png";
-// import addBgOpacity from "../../../assets/bg.png";
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 
 const RightSideNav = () => {
-  const { signInWithGoogle } = useContext(AuthContext);
-  const { signInWithGithub } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
   return (
     <aside>
@@ -61,9 +58,9 @@ const RightSideNav = () => {
       </div>
       <div className="p-4 mb-8 bg-light">
         <h2 className="text-3xl mb-5">Q-Zone</h2>
-        <img className="w-full" src={qZone1} alt="" />
         <img className="w-full" src={qZone2} alt="" />
         <img className="w-full" src={qZone3} alt="" />
+        <img className="w-full" src={qZone2} alt="" />
       </div>
       <div>
         <img className="rounded-none w-full" src={addBg} alt="" />
