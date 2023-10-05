@@ -9,6 +9,7 @@ import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import AuthProviders from "./Providers/AuthProviders.jsx";
 import DetailsNews from "./pages/Home/DetailsNews.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 
 const routers = createBrowserRouter([
   {
@@ -19,6 +20,9 @@ const routers = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        
+        /* must use / in fetch url to navigate after reload page. */
+        loader: () => fetch("/news.json"),
       },
       {
         path: "/login",
@@ -30,8 +34,12 @@ const routers = createBrowserRouter([
       },
       {
         path: "/news/:id",
-        element: <DetailsNews />,
-        loader: () => fetch('news.json')
+        element: (
+          <PrivateRoute>
+            <DetailsNews />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/news.json"),
       },
     ],
   },

@@ -6,24 +6,21 @@ import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
 import NewsCard from "./NewsCard";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
+  const data = useLoaderData();
   const [news, setNews] = useState([]);
-
   const { categoryId } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("news.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const theNews = data.filter(
-          (news) => isNaN(categoryId) || news.category_id == categoryId
-        );
+    const theNews = data.filter(
+      (news) => isNaN(categoryId) || news.category_id == categoryId
+    );
 
-        // console.log(theNews, categoryId);
-        setNews(theNews);
-      });
-  }, [categoryId]);
+    // console.log(theNews, categoryId);
+    setNews(theNews);
+  }, [categoryId, data]);
 
   return (
     <>

@@ -58,10 +58,16 @@ const NewsCard = ({ news }) => {
 
         <div className="px-3 text-gray">
           <p className="p-0">
-            {details.slice(0, 300) + "..."}{" "}
-            <Link to={`/news/${_id}`} className="text-orange">
-              Read More
-            </Link>
+            {details.length > 300 ? (
+              <>
+                {details.slice(0, 300) + "..."}{" "}
+                <Link to={`/news/${_id}`} className="text-orange">
+                  Read More
+                </Link>
+              </>
+            ) : (
+              details
+            )}
           </p>
           <div className="card-actions flex justify-between py-5 px-3 border-t border-light-gray mt-5">
             <div className="flex items-center gap-2">
